@@ -10,27 +10,30 @@
 
 <body>
   <h1> BLACKJACK!</h1>
-  <h2>May luck be on your side!</h2>
+
+  <!-- display winner in h2 below-->
+  <h2 class="winnerDeclared"></h2>
 
 
   <button class='hit'>hit</button>
   <button class='stay'>stay</button>
 
-
+  <h2 class="playerDeclaration"></h2>
   <ul class='player-hand'>
     <li>The Player Has:</li>
   </ul>
   <p class="player-card-total"></p>
+  <p class="blackJack"></p>
 
 
-
+  <h2 class="dealerDeclaration"></h2>
   <ul class='dealer-hand'>
     <li>The Dealer Has:</li>
-    <li class=""> image of back of card</li>
+    <li class="backOfCard"> image of back of card</li>
   </ul>
   <p class="dealer-card-total"></p>
 
-
+  <button id="reloadPage" class="hiddenRestartButton">RESTART</button>
 
   <script src="/main.js" charset="utf-8"></script>
 </body>

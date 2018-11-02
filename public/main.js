@@ -54,63 +54,116 @@ let deck = [
   { face: 'ace', value: 11, suit: 'diamonds' }
 ]
 
-//
-//insert dynamix deck here if chosen
-//
-
-// This array will store the player's hand
 let playerHand = []
 
-// This array will store the dealer's hand
 let dealerHand = []
 
-const stayButton = () => {
-  //dealers turn
-  //
+let whoWon = () => {
+  //needs work
+  //cannot display higher number as winner if busted
+  // if both player and dealer value is 21 declare tie
+  if (computeDealerHandValue() <= computePlayerHandValue()) {
+    let winner = document.querySelector('.winnerDeclared')
+    winner.textContent(`PLAYER IS THE WINNER`)
+  }
+  if (computeDealerHandValue() >= computePlayerHandValue()) {
+    let winner = document.querySelector('.winnerDeclared')
+    winner.textContent(`DEALER IS THE WINNER`)
+    // if both player and dealer have the string BUST! declare tie
+  }
+  // restart button
+  // const restartButton = () => {
+  //   window.location.reload(true)
+  // }
+}
+let HideHitButton = () => {
+  let hidden = document.querySelector('.hit')
+  hidden.classList.add('hideElement')
+}
+let HideStayButton = () => {
+  let hidden = document.querySelector('.stay')
+  hidden.classList.add('hideElement')
+}
+let AppearRestartButton = () => {
+  let restartButton = document.querySelector('.hiddenRestartButton')
+  restartButton.classList.toggle('hiddenRestartButton')
+}
+
+let restartButtonFunction = () => {
+  window.location.reload(true)
+}
+
+let stayButtonFunction = () => {
+  hideDealerBackCard()
+  dealCardToDealer()
+  HideStayButton()
+  HideHitButton()
+  AppearRestartButton()
+}
+
+let hideDealerBackCard = () => {
+  let hidden = document.querySelector('.backOfCard')
+  hidden.classList.add('hideElement')
+}
+
+let dealerCardsToDealerLogic = () => {
+  //    need this to activate after player has reached 21
+  // , player busts, or player stays
+  // also, need a function that hides hit button when conditions
+  // above are met
+  if (computeDealerHandValue() < 17) {
+    dealCardToDealer()
+    // kinda rare but doesnt always work
+    // figure out why
+    // sometimes dealer has cards below 17
+    // thinking a for loop can help
+  }
+  if (computeDealerHandValue() > 17) {
+    if (computeDealerHandValue() < 21) {
+      // whoWon()
+    }
+  }
+  if (computeDealerHandValue() > 21) {
+    let playerBust = document.querySelector('.dealerDeclaration')
+    playerBust.textContent = `BUST!`
+    //  - make restart button element
+  }
+}
+
+const computePlayerHandValue = () => {
+  // This is how i got the total value for cards in hand for player
+  let playerTotalForLoop = 0
+  for (let i = 0; i < playerHand.length; i++) {
+    //
+    // dealerTotalForLoop += dealerHand[i]
+    //                 or
+    playerTotalForLoop = playerTotalForLoop + playerHand[i]
+  }
+
+  return playerTotalForLoop
+}
+
+const computeDealerHandValue = () => {
+  // This is how i got the total value for cards in hand for dealer
+  let dealerTotalForLoop = 0
+  for (let i = 0; i < dealerHand.length; i++) {
+    //
+    // dealerTotalForLoop += dealerHand[i]
+    //                or
+    dealerTotalForLoop = dealerTotalForLoop + dealerHand[i]
+  }
+
+  return dealerTotalForLoop
 }
 
 const dealCardToPlayer = () => {
   let playerHandList = document.querySelector('.player-hand')
 
-  // - pop another card
-  // - push it to the hand
-  // - add the card to the interface
   let card = deck.pop()
 
   playerHand.push(card.value)
 
-  // was an option
-  // if (playerHand.length === 2) {
-  //   let playerValue = playerHand[0] + playerHand[1]
-  //   console.log(playerValue)
-  // }
-  // if (playerHand.length === 3) {
-  //   let playerValue = playerHand[0] + playerHand[1] + playerHand[2]
-  //   console.log(playerValue)
-  // }
-  // if (playerHand.length === 4) {
-  //   let playerValue = playerHand[0] + playerHand[1] + playerHand[2] + playerHand[3]
-  //   console.log(playerValue)
-  // }
-  //
-
-  //
-  // This is how i got the total value for cards in hand
-  //
-  let playerTotalForLoop = 0
-  for (let i = 0; i < playerHand.length; i++) {
-    // playerTotalForLoop += playerHand[i]
-    playerTotalForLoop = playerTotalForLoop + playerHand[i]
-  }
-  let name = document.querySelector('.player-card-total')
-  name.textContent = playerTotalForLoop
-
-  //
-  //
-  //
-
   // Add this card to the user interface
-
   // Create new LI
   let newCardItem = document.createElement('li')
 
@@ -120,28 +173,41 @@ const dealCardToPlayer = () => {
   // Append that LI to the UL
   playerHandList.appendChild(newCardItem)
 
+  let playerHandValue = computePlayerHandValue()
+
+  let playerCardTotalValue = document.querySelector('.player-card-total')
+  playerCardTotalValue.textContent = playerHandValue
+
   //
-  //
-  //
-  // - if value is greater than 21 then run function whoWon() function
-  //
-  //
+  // ++probably should be added to compute playerHandValue function++
+  if (playerHandValue >= 22) {
+    dealCardToDealer()
+    hideDealerBackCard()
+    HideHitButton()
+    HideStayButton()
+    AppearRestartButton()
+    let playerBust = document.querySelector('.playerDeclaration')
+    playerBust.textContent = `BUST!`
+  }
+  if (playerHandValue === 21) {
+    dealCardToDealer()
+    hideDealerBackCard()
+    HideHitButton()
+    HideStayButton()
+    AppearRestartButton()
+    let winner = document.querySelector('.playerDeclaration')
+    winner.textContent = `BLACKJACK!`
+  }
 }
 
 const dealCardToDealer = () => {
-  // create function to deal cards to dealer. should be really similar to player one deal
-
   let dealerHandList = document.querySelector('.dealer-hand')
 
-  // - pop another card
-  // - push it to the hand
-  // - add the card to the interface
   let card = deck.pop()
 
   dealerHand.push(card.value)
 
   // Add this card to the user interface
-
   // Create new LI
   let newCardItem = document.createElement('li')
 
@@ -151,52 +217,16 @@ const dealCardToDealer = () => {
   // Append that LI to the UL
   dealerHandList.appendChild(newCardItem)
 
-  let dealerTotalForLoop = 0
-  for (let i = 0; i < dealerHand.length; i++) {
-    // dealerTotalForLoop += dealerHand[i]
-    dealerTotalForLoop = dealerTotalForLoop + dealerHand[i]
+  let dealerHandValue = computeDealerHandValue()
+
+  let dealerCardTotalValue = document.querySelector('.dealer-card-total')
+  dealerCardTotalValue.textContent = dealerHandValue
+
+  // dealer array (dealer hand) is more than 1 then run dealer logic
+  if (dealerHand.length === 2) {
+    dealerCardsToDealerLogic()
   }
-  if (dealerHand.length === 1) {
-    //display back of card
-    // display back of card when there is only one card
-  } else {
-  }
-  let name = document.querySelector('.dealer-card-total')
-  name.textContent = dealerTotalForLoop
 }
-
-//
-//
-// need function to add up total of hand for dealer
-// - find the dealer li
-// - add total value of cards
-// - display the dealers total value
-// - if value is greater than 21 then run function whoWon() function
-// - if dealer value => value of 17 dealer cannot hit
-// - if dealer value is below 17 he has to hit
-//
-
-//
-//
-// stay button
-// - find the stay button
-// - call the dealer function to run
-//
-//
-
-//
-//
-// whoWon() function
-// - if value of player is higher than dealer, but not above 21. player wins
-// - if value of dealer is higher than player, but not above 21. dealer wins
-//
-//
-
-//
-//
-// Deal again button // reset button
-//
-//
 
 const main = () => {
   // Shuffle the deck into a random order
@@ -223,10 +253,16 @@ const main = () => {
   let hitButton = document.querySelector('.hit')
   // Add an event listener on 'click' that does:
   hitButton.addEventListener('click', dealCardToPlayer)
+
   // find stay button
   let stayButton = document.querySelector('.stay')
   // add event listener on click that does
-  stayButton.addEventListener('click', stayButton)
+  stayButton.addEventListener('click', stayButtonFunction)
+
+  // find restart button
+  let restartButton = document.querySelector('#reloadPage')
+  // add event listener on click that does
+  restartButton.addEventListener('click', restartButtonFunction)
 }
 
 document.addEventListener('DOMContentLoaded', main)

@@ -7,3 +7,12 @@ body {
   min-height: 100%;
   font: 16px / 1 sans-serif;
 }
+.hideElement {
+  display: none;
+}
+.hiddenRestartButton {
+  display: none;
+}
+.showElement {
+  display: ;
+}
