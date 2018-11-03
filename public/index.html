@@ -9,31 +9,46 @@
 </head>
 
 <body>
-  <h1> BLACKJACK!</h1>
-
-  <!-- display winner in h2 below-->
-  <h2 class="winnerDeclared"></h2>
-
-
-  <button class='hit'>hit</button>
-  <button class='stay'>stay</button>
-
-  <h2 class="playerDeclaration"></h2>
-  <ul class='player-hand'>
-    <li>The Player Has:</li>
-  </ul>
-  <p class="player-card-total"></p>
-  <p class="blackJack"></p>
+  <section class="banner">
+    <h1> BLACKJACK!</h1>
+  </section>
 
 
-  <h2 class="dealerDeclaration"></h2>
-  <ul class='dealer-hand'>
-    <li>The Dealer Has:</li>
-    <li class="backOfCard"> image of back of card</li>
-  </ul>
-  <p class="dealer-card-total"></p>
+  <div class="buttons">
+    <button class='hit'>hit</button>
+    <button id="reloadPage" class="hiddenRestartButton">RESTART</button>
+    <button class='stay'>stay</button>
+  </div>
+  <main>
+    <p class="winnerDeclared"></p>
+    <section class="playerDealerBoxes">
+      <div class="hasFlex">
+        <p class="playerDeclaration">The Player Has:&nbsp;</p>
+        <p class="player-card-total"></p>
+      </div>
 
-  <button id="reloadPage" class="hiddenRestartButton">RESTART</button>
+      <ul class='player-hand'>
+      </ul>
+      <p class="blackJack"></p>
+    </section>
+
+
+    <section class="playerDealerBoxes">
+      <div class="hasFlex">
+        <p class="dealerDeclaration">The Dealer Has:&nbsp;</p>
+        <p class="dealer-card-total"></p>
+      </div>
+      <ul class='dealer-hand'>
+        <li class="backOfCard"><img class="backOfCardImg" src="./images/backOfCard.png" alt="image of back of card"></li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p class="footer">
+      Copyright Nonesense @SheaParrott
+    </p>
+  </footer>
+
 
   <script src="/main.js" charset="utf-8"></script>
 </body>

@@ -6,6 +6,9 @@ body {
   margin: 0;
   min-height: 100%;
   font: 16px / 1 sans-serif;
+  line-height: 0;
+  background-image: linear-gradient(rgb(4, 75, 26), rgb(7, 99, 36));
+  background-size: contain;
 }
 .hideElement {
   display: none;
@@ -13,6 +16,253 @@ body {
 .hiddenRestartButton {
   display: none;
 }
-.showElement {
-  display: ;
+.banner {
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(rgba(245, 60, 9, 0.2), rgb(0, 0, 0)),
+    url(./images/blackjack21.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+h1 {
+  font-family: vegas;
+  font-size: 3.2rem;
+  text-shadow: 0 0 15px rgb(255 174 3), 2px 2px 2px rgb(55 39 114);
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+.hit,
+.stay,
+#reloadPage {
+  margin: 5px;
+  border-radius: 10px;
+  background: rgb(55 39 145);
+  border: 0.5px solid black;
+  color: white;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.hit:hover,
+.stay:hover,
+#reloadPage:hover {
+  box-shadow: 0 0 20px goldenrod;
+}
+
+.winnerDeclared {
+  font-size: 1.5rem;
+}
+img {
+  width: 57px;
+  height: auto;
+  box-shadow: 0 0 20px white;
+  margin: 0.8px;
+}
+.winnerDeclared {
+  text-shadow: 0 0 25px white;
+}
+img.backOfCardImg {
+  width: 59px;
+  height: auto;
+}
+li {
+  list-style: none;
+}
+.dealer-hand {
+  display: flex;
+}
+.player-hand {
+  display: flex;
+}
+.playerDealerBoxes {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+.hasFlex {
+  display: flex;
+}
+main {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+@font-face {
+  font-family: Vegas;
+  src: url(./assets/vegas.ttf);
+}
+
+footer {
+  width: 100vw;
+  background: linear-gradient(rgba(42, 4, 0, 0.1), rgba(42, 4, 0, 1));
+  position: fixed;
+  bottom: 0px;
+  font-size: 0.6rem;
+  text-align: center;
+}
+.footer {
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  width: 100vw;
+}
+.dealerDeclaration,
+.dealer-card-total,
+.playerDeclaration,
+.player-card-total {
+  text-shadow: 0 0 20px white;
+}
+
+@media (min-width: 374px) {
+  img {
+    width: 63px;
+    height: auto;
+  }
+  img.backOfCardImg {
+    width: 65px;
+    height: auto;
+  }
+}
+@media (min-width: 410px) {
+  img {
+    width: 70px;
+    height: auto;
+  }
+  img.backOfCardImg {
+    width: 72.5px;
+    height: auto;
+  }
+}
+@media (min-width: 529px) {
+  img {
+    width: 87px;
+    height: auto;
+  }
+  img.backOfCardImg {
+    width: 90px;
+    height: auto;
+  }
+}
+@media (min-width: 650px) {
+  img {
+    width: 110px;
+    height: auto;
+  }
+  img.backOfCardImg {
+    width: 114px;
+    height: auto;
+  }
+}
+@media (min-width: 920px) {
+  img {
+    width: 115px;
+    height: auto;
+  }
+  img.backOfCardImg {
+    width: 119px;
+    height: auto;
+  }
+  h1 {
+    font-size: 3.7rem;
+  }
+  .winnerDeclared {
+    font-size: 1.2rem;
+  }
+  .hit,
+  .stay,
+  #reloadPage,
+  p {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1000px) {
+  img {
+    width: 120px;
+    height: auto;
+  }
+  img.backOfCardImg {
+    width: 124px;
+    height: auto;
+  }
+  h1 {
+    font-size: 3.9rem;
+  }
+  .winnerDeclared {
+    font-size: 1.3rem;
+  }
+  .hit,
+  .stay,
+  #reloadPage,
+  p {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 1200px) {
+  img {
+    width: 125px;
+    height: au719to;
+  }
+  img.backOfCardImg {
+    width: 129px;
+    height: auto;
+  }
+  h1 {
+    font-size: 4rem;
+  }
+  .winnerDeclared {
+    font-size: 1.5rem;
+  }
+  .hit,
+  .stay,
+  #reloadPage,
+  p {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 1350px) {
+  img {
+    width: 130px;
+    height: au719to;
+  }
+  img.backOfCardImg {
+    width: 134px;
+    height: auto;
+  }
+  h1 {
+    font-size: 4.3rem;
+  }
+  .winnerDeclared {
+    font-size: 1.7rem;
+  }
+  .hit,
+  .stay,
+  #reloadPage,
+  p {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 1890px) {
+  img {
+    width: 185px;
+    height: auto;
+  }
+  img.backOfCardImg {
+    width: 190px;
+    height: auto;
+  }
+  h1 {
+    font-size: 5rem;
+  }
+  .winnerDeclared {
+    font-size: 2rem;
+  }
+  .hit,
+  .stay,
+  #reloadPage,
+  p {
+    font-size: 2rem;
+  }
 }

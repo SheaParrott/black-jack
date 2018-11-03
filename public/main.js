@@ -59,22 +59,39 @@ let playerHand = []
 let dealerHand = []
 
 let whoWon = () => {
-  //needs work
-  //cannot display higher number as winner if busted
-  // if both player and dealer value is 21 declare tie
-  if (computeDealerHandValue() <= computePlayerHandValue()) {
-    let winner = document.querySelector('.winnerDeclared')
-    winner.textContent(`PLAYER IS THE WINNER`)
+  if (computeDealerHandValue() <= 21 && computePlayerHandValue() <= 21) {
+    if (computeDealerHandValue() < computePlayerHandValue()) {
+      let whoWonDeclaration = document.querySelector('.winnerDeclared')
+      whoWonDeclaration.textContent = `PLAYER IS THE WINNER`
+    }
+    if (computeDealerHandValue() > computePlayerHandValue()) {
+      let whoWonDeclaration = document.querySelector('.winnerDeclared')
+      whoWonDeclaration.textContent = `DEALER IS THE WINNER`
+    }
+    if (computeDealerHandValue() === computePlayerHandValue()) {
+      let whoWonDeclaration = document.querySelector('.winnerDeclared')
+      whoWonDeclaration.textContent = `TIE`
+      //
+      // if statement above is not working for 21 === 21
+      //
+      //player 16 and dealer 21 didnt display winner
+    }
   }
-  if (computeDealerHandValue() >= computePlayerHandValue()) {
-    let winner = document.querySelector('.winnerDeclared')
-    winner.textContent(`DEALER IS THE WINNER`)
-    // if both player and dealer have the string BUST! declare tie
+  //
+  if (computeDealerHandValue() >= 22 && computePlayerHandValue() <= 21) {
+    let whoWonDeclaration = document.querySelector('.winnerDeclared')
+    whoWonDeclaration.textContent = `PLAYER IS THE WINNER`
   }
-  // restart button
-  // const restartButton = () => {
-  //   window.location.reload(true)
-  // }
+  //
+  if (computeDealerHandValue() <= 21 && computePlayerHandValue() >= 22) {
+    let whoWonDeclaration = document.querySelector('.winnerDeclared')
+    whoWonDeclaration.textContent = `DEALER IS THE WINNER`
+  }
+  //
+  if (computeDealerHandValue() >= 22 && computePlayerHandValue() >= 22) {
+    let whoWonDeclaration = document.querySelector('.winnerDeclared')
+    whoWonDeclaration.textContent = `EVERYONE BUSTED`
+  }
 }
 let HideHitButton = () => {
   let hidden = document.querySelector('.hit')
@@ -95,9 +112,9 @@ let restartButtonFunction = () => {
 
 let stayButtonFunction = () => {
   hideDealerBackCard()
-  dealCardToDealer()
   HideStayButton()
   HideHitButton()
+  dealerCardsToDealerLogic()
   AppearRestartButton()
 }
 
@@ -105,28 +122,19 @@ let hideDealerBackCard = () => {
   let hidden = document.querySelector('.backOfCard')
   hidden.classList.add('hideElement')
 }
+//
 
 let dealerCardsToDealerLogic = () => {
-  //    need this to activate after player has reached 21
-  // , player busts, or player stays
-  // also, need a function that hides hit button when conditions
-  // above are met
-  if (computeDealerHandValue() < 17) {
+  while (computeDealerHandValue() <= 17) {
     dealCardToDealer()
-    // kinda rare but doesnt always work
-    // figure out why
-    // sometimes dealer has cards below 17
-    // thinking a for loop can help
   }
-  if (computeDealerHandValue() > 17) {
-    if (computeDealerHandValue() < 21) {
-      // whoWon()
-    }
+  if (computeDealerHandValue() >= 18 && computeDealerHandValue() < 21) {
+    whoWon()
   }
-  if (computeDealerHandValue() > 21) {
-    let playerBust = document.querySelector('.dealerDeclaration')
-    playerBust.textContent = `BUST!`
-    //  - make restart button element
+  if (computeDealerHandValue() >= 22) {
+    let dealerBust = document.querySelector('.dealerDeclaration')
+    dealerBust.textContent = `BUST!`
+    whoWon()
   }
 }
 
@@ -157,20 +165,23 @@ const computeDealerHandValue = () => {
 }
 
 const dealCardToPlayer = () => {
-  let playerHandList = document.querySelector('.player-hand')
-
   let card = deck.pop()
 
   playerHand.push(card.value)
 
-  // Add this card to the user interface
-  // Create new LI
+  let playerHandList = document.querySelector('.player-hand')
+
   let newCardItem = document.createElement('li')
 
-  // Make the text of the LI be the description of the card
-  newCardItem.textContent = `The ${card.face} of ${card.suit}`
+  let src = `/images/${card.face}_of_${card.suit}.svg`
+  let alt = `The ${card.face} of ${card.suit}`
+  let newImage = document.createElement('img')
+  newImage.src = src
+  newImage.alt = alt
+  newCardItem.appendChild(newImage)
 
-  // Append that LI to the UL
+  // - APPEND that new LI to the UL
+  //    ^ brand new thing
   playerHandList.appendChild(newCardItem)
 
   let playerHandValue = computePlayerHandValue()
@@ -201,20 +212,23 @@ const dealCardToPlayer = () => {
 }
 
 const dealCardToDealer = () => {
-  let dealerHandList = document.querySelector('.dealer-hand')
-
   let card = deck.pop()
 
   dealerHand.push(card.value)
 
-  // Add this card to the user interface
-  // Create new LI
+  let dealerHandList = document.querySelector('.dealer-hand')
+
   let newCardItem = document.createElement('li')
 
-  // Make the text of the LI be the description of the card
-  newCardItem.textContent = `The ${card.face} of ${card.suit}`
+  let src = `/images/${card.face}_of_${card.suit}.svg`
+  let alt = `The ${card.face} of ${card.suit}`
+  let newImage = document.createElement('img')
+  newImage.src = src
+  newImage.alt = alt
+  newCardItem.appendChild(newImage)
 
-  // Append that LI to the UL
+  // - APPEND that new LI to the UL
+  //    ^ brand new thing
   dealerHandList.appendChild(newCardItem)
 
   let dealerHandValue = computeDealerHandValue()
