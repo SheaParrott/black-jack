@@ -59,6 +59,7 @@ let playerHand = []
 let dealerHand = []
 
 let whoWon = () => {
+  console.log('INSIDE WHO WON')
   if (computeDealerHandValue() <= 21 && computePlayerHandValue() <= 21) {
     if (computeDealerHandValue() < computePlayerHandValue()) {
       let whoWonDeclaration = document.querySelector('.winnerDeclared')
@@ -128,10 +129,9 @@ let dealerCardsToDealerLogic = () => {
   while (computeDealerHandValue() <= 17) {
     dealCardToDealer()
   }
-  if (computeDealerHandValue() >= 18 && computeDealerHandValue() < 21) {
+  if (computeDealerHandValue() <= 21) {
     whoWon()
-  }
-  if (computeDealerHandValue() >= 22) {
+  } else {
     let dealerBust = document.querySelector('.dealerDeclaration')
     dealerBust.textContent = `BUST!`
     whoWon()

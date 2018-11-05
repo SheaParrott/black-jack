@@ -42,6 +42,7 @@ h1 {
   border: 0.5px solid black;
   color: white;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  padding: 5px 15px 5px 15px;
 }
 
 .hit:hover,
@@ -58,6 +59,7 @@ img {
   height: auto;
   box-shadow: 0 0 20px white;
   margin: 0.8px;
+  border-radius: 10px;
 }
 .winnerDeclared {
   text-shadow: 0 0 25px white;
@@ -175,7 +177,7 @@ footer {
   .stay,
   #reloadPage,
   p {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 }
 @media (min-width: 1000px) {
@@ -225,7 +227,7 @@ footer {
 @media (min-width: 1350px) {
   img {
     width: 130px;
-    height: au719to;
+    height: auto;
   }
   img.backOfCardImg {
     width: 134px;
@@ -264,5 +266,6 @@ footer {
   #reloadPage,
   p {
     font-size: 2rem;
+    padding: 5px 18px 5px 18px;
   }
 }
