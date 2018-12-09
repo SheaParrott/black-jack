@@ -4,7 +4,9 @@ In this assignment we were instructed to create Blackjack in javascript
 <strong>Things learned</strong><br/>
 expanded and reinforced my knowledge into CSS including but not limited to Flexbox<br/>
 expanded my knowledge in javascript<br/>
-learned the importance of naming functions and classes clearly<br/>
+the importance of naming functions and classes clearly<br/>
+deeper dive into creating game logic<br/>
+
 
 <strong>Technologies Used</strong><br/>
 HTML<br/>
