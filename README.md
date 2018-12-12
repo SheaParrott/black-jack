@@ -13,7 +13,8 @@ HTML<br/>
 CSS<br/>
 javascript<br/>
 
-
+https://www.javascript.com/ <br/>
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 
 
